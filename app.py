@@ -2,12 +2,15 @@ from flask import Flask
 from models import db
 from config import Config
 from routes import livros_bp
+from flask_cors import CORS
 
 app = Flask(__name__)
+
 app.config.from_object(Config)
 
 db.init_app(app)
 
+CORS(app)
 # Configurando banco de dados ====================================================
 with app.app_context():
     db.create_all()
